@@ -13,5 +13,61 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\dump">
+      <UniqueIdentifier>{dd06462d-829f-460d-8ec9-da879b64f533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{d81fdca8-b8cd-4084-ba78-84a7f226c7f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\chrono">
+      <UniqueIdentifier>{e894aadb-7963-4d40-bc18-160682debb92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\stlx">
+      <UniqueIdentifier>{ac2928b1-7527-44a7-9ed2-f39395e5337a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parse">
+      <UniqueIdentifier>{94260607-5647-4cad-94ab-76537db58d8c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gvals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dump\assert_any.h">
+      <Filter>Header Files\dump</Filter>
+    </ClInclude>
+    <ClInclude Include="base\noncopyable.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\noninstantable.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\presuffixable.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\object_tracer.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="chrono\chrono_algori.h">
+      <Filter>Header Files\chrono</Filter>
+    </ClInclude>
+    <ClInclude Include="stlx\case_insensive_char_traits.h">
+      <Filter>Header Files\stlx</Filter>
+    </ClInclude>
+    <ClInclude Include="chrono\chrono_ex.h">
+      <Filter>Header Files\chrono</Filter>
+    </ClInclude>
+    <ClInclude Include="dump\mem_tracer.h">
+      <Filter>Header Files\dump</Filter>
+    </ClInclude>
+    <ClInclude Include="base\singlable.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\object_countable.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="parse\tinyxml2_ex.h">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
