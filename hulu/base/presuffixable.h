@@ -50,7 +50,7 @@ public:
 };
 
 /**
- * @brief wrapped type T, any call inserted _Pref and _Suf
+ * @brief wrapped Type T, any call inserted _Pref and _Suf
  *		  _Pref and _Suf -> void(void)
  */
 template <typename _T, typename _Pref, typename _Suf>
@@ -117,7 +117,7 @@ public:
 };
 
 /**
- * a demo for wrap a single type
+ * a demo for wrap a single Type
  */
 inline
 void 

@@ -29,10 +29,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="assert_any.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stack_tracer.cpp">
+    <ClCompile Include="spin_lock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

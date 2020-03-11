@@ -43,40 +43,40 @@
 */
 #pragma region auto_property
 
-#define DEF_PROPERTY_INIT(type, name, value) type name##_{ value };
-#define DEF_PROPERTY(type, name) type name##_;
+#define DEF_PROPERTY_INIT(Type, name, value) Type name##_{ value };
+#define DEF_PROPERTY(Type, name) Type name##_;
 
-#define GET_PROPERTY(type, name) type name() const {return name##_;}
-#define GET_PROPERTY_CONSTREF(type, name) const type & name() const {return name##_;}
-#define GET_PROPERTY_REF(type, name) type & name() const {return name##_;}
+#define GET_PROPERTY(Type, name) Type name() const {return name##_;}
+#define GET_PROPERTY_CONSTREF(Type, name) const Type & name() const {return name##_;}
+#define GET_PROPERTY_REF(Type, name) Type & name() const {return name##_;}
 
-#define SET_PROPERTY(type, name) void set_##name(const type & value){name##_ = value;}
+#define SET_PROPERTY(Type, name) void set_##name(const Type & value){name##_ = value;}
 
-#define PROPERTY(type, name) \
+#define PROPERTY(Type, name) \
 private:\
-	DEF_PROPERTY(type, name) \
+	DEF_PROPERTY(Type, name) \
 public:\
-	GET_PROPERTY_CONSTREF(type, name) \
-	SET_PROPERTY(type, name)
+	GET_PROPERTY_CONSTREF(Type, name) \
+	SET_PROPERTY(Type, name)
 
-#define PROPERTY_INIT(type, name, value) \
+#define PROPERTY_INIT(Type, name, value) \
 private:\
-	DEF_PROPERTY_INIT(type, name, value) \
+	DEF_PROPERTY_INIT(Type, name, value) \
 public:\
-	GET_PROPERTY_CONSTREF(type, name) \
-	SET_PROPERTY(type, name)
+	GET_PROPERTY_CONSTREF(Type, name) \
+	SET_PROPERTY(Type, name)
 
-#define PROPERTY_READONLY(type, name) \
+#define PROPERTY_READONLY(Type, name) \
 private:\
-	DEF_PROPERTY(type, name) \
+	DEF_PROPERTY(Type, name) \
 public:\
-	GET_PROPERTY_CONSTREF(type, name)
+	GET_PROPERTY_CONSTREF(Type, name)
 
-#define PROPERTY_READONLY_INIT(type, name, value) \
+#define PROPERTY_READONLY_INIT(Type, name, value) \
 private:\
-	DEF_PROPERTY_INIT(type, name, value) \
+	DEF_PROPERTY_INIT(Type, name, value) \
 public:\
-	GET_PROPERTY_CONSTREF(type, name)
+	GET_PROPERTY_CONSTREF(Type, name)
 
 #pragma endregion
 

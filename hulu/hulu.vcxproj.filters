@@ -28,6 +28,9 @@
     <Filter Include="Header Files\parse">
       <UniqueIdentifier>{94260607-5647-4cad-94ab-76537db58d8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\thread">
+      <UniqueIdentifier>{3e4d9e0f-e85c-4cda-a656-d0784cce0a3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gvals.h">
@@ -68,6 +71,24 @@
     </ClInclude>
     <ClInclude Include="parse\tinyxml2_ex.h">
       <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\spin_lock.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="parse\inier.h">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="parse\xml_parser.h">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="parse\ini_parser.h">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="dump\stack_tracer.h">
+      <Filter>Header Files\dump</Filter>
+    </ClInclude>
+    <ClInclude Include="dump\struct_exception.h">
+      <Filter>Header Files\dump</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -151,6 +151,7 @@
     <ClCompile Include="noncopyable.cpp" />
     <ClCompile Include="noninstantable.cpp" />
     <ClCompile Include="object_countable.cpp" />
+    <ClCompile Include="object_tracer.cpp" />
     <ClCompile Include="presuffixable.cpp" />
     <ClCompile Include="singlable.cpp" />
     <ClCompile Include="stdafx.cpp" />

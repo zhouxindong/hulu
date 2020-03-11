@@ -149,9 +149,15 @@
     <ClInclude Include="chrono\chrono_ex.h" />
     <ClInclude Include="dump\assert_any.h" />
     <ClInclude Include="dump\mem_tracer.h" />
+    <ClInclude Include="dump\stack_tracer.h" />
+    <ClInclude Include="dump\struct_exception.h" />
     <ClInclude Include="gvals.h" />
+    <ClInclude Include="parse\inier.h" />
+    <ClInclude Include="parse\ini_parser.h" />
     <ClInclude Include="parse\tinyxml2_ex.h" />
+    <ClInclude Include="parse\xml_parser.h" />
     <ClInclude Include="stlx\case_insensive_char_traits.h" />
+    <ClInclude Include="thread\spin_lock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

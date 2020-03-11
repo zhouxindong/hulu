@@ -3,6 +3,10 @@
 #define _HULU_PARSE_TINYXML2_EX_H_
 
 #include "../gvals.h"
+#include "xml_parser.h"
+#include "../base/noncopyable.h"
+
+#include <cassert>
 
 #pragma push_macro("new")
 #undef new
@@ -190,10 +194,10 @@ static const Entity entities[NUM_ENTITIES] = {
 	{ "gt",	2,		'>' }
 };
 
-#pragma region xml util
+#pragma region xml_text util
 
-static const char* writeBoolTrue = "true";
-static const char* writeBoolFalse = "false";
+static const char* WRITE_BOOL_TRUE = "true";
+static const char* WRITE_BOOL_FALSE = "false";
 
 inline bool IsUTF8Continuation(char p) {
 	return (p & 0x80) != 0;
@@ -429,7 +433,7 @@ inline void ToStr(unsigned v, char* buffer, int bufferSize)
 
 inline void ToStr(bool v, char* buffer, int bufferSize)
 {
-	TIXML_SNPRINTF(buffer, bufferSize, "%s", v ? writeBoolTrue : writeBoolFalse);
+	TIXML_SNPRINTF(buffer, bufferSize, "%s", v ? WRITE_BOOL_TRUE : WRITE_BOOL_FALSE);
 }
 
 /*
@@ -545,8 +549,8 @@ inline void SetBoolSerialization(const char* writeTrue, const char* writeFalse)
 	static const char* defTrue = "true";
 	static const char* defFalse = "false";
 
-	writeBoolTrue = (writeTrue) ? writeTrue : defTrue;
-	writeBoolFalse = (writeFalse) ? writeFalse : defFalse;
+	WRITE_BOOL_TRUE = (writeTrue) ? writeTrue : defTrue;
+	WRITE_BOOL_FALSE = (writeFalse) ? writeFalse : defFalse;
 }
 
 #pragma endregion
@@ -568,7 +572,7 @@ inline FILE* callfopen(const char* filepath, const char* mode)
 }
 
 // This is likely overengineered template art to have a check that unsigned long value incremented
-// by one still fits into size_t. If size_t type is larger than unsigned long type
+// by one still fits into size_t. If size_t Type is larger than unsigned long Type
 // (x86_64-w64-mingw32 target) then the check is redundant and gcc and clang emit
 // -Wtype-limits warning. This piece makes the compiler select code with a check when a check
 // is useful and code with no check when a check is redundant depending on how size_t and unsigned long
@@ -592,7 +596,7 @@ struct LongFitsIntoSizeTMinusOne<false> {
 
 /*
 A class that wraps strings. Normally stores the start and end
-pointers into the XML file itself, and will apply normalization
+pointers into the XML xml_file itself, and will apply normalization
 and entity translation if actually read. Can also store (and memory
 manage) a traditional char[]
 */
@@ -1012,7 +1016,7 @@ public:
 };
 
 /*
-Template child class to create pools of the correct type.
+Template child class to create pools of the correct Type.
 */
 template< int ITEM_SIZE >
 class MemPoolT : public MemPool
@@ -1098,7 +1102,7 @@ public:
 	}
 
 	// This number is perf sensitive. 4k seems like a good tradeoff on my machine.
-	// The test file is large, 170k.
+	// The test xml_file is large, 170k.
 	// Release:		VS2010 gcc(no opt)
 	//		1k:		4000
 	//		2k:		4000
@@ -1240,8 +1244,8 @@ static const char* /*XMLDocument::*/_errorNames[XML_ERROR_COUNT] = {
 XML Document Object Model (DOM), except XMLAttributes.
 Nodes have siblings, a parent, and children which can
 be navigated. A node is always in a XMLDocument.
-The type of a XMLNode can be queried, and it can
-be cast to its more defined type.
+The Type of a XMLNode can be queried, and it can
+be cast to its more defined Type.
 
 A XMLDocument allocates memory for all its Nodes.
 When the XMLDocument gets deleted, all its Nodes
@@ -1329,10 +1333,10 @@ public:
 		return 0;
 	}
 
-	/** The meaning of 'value' changes for the specific type.
+	/** The meaning of 'value' changes for the specific Type.
 	@verbatim
 	Document:	empty (NULL is returned, not an empty string)
-	Element:	name of the element
+	Element:	attr_name of the element
 	Comment:	the comment text
 	Unknown:	the tag contents
 	Text:		the text string
@@ -1359,7 +1363,7 @@ public:
 		}
 	}
 
-	/// Gets the line number the node is in, if the document was parsed from a file.
+	/// Gets the line number the node is in, if the document was parsed from a xml_file.
 	int GetLineNum() const { return _parseLineNum; }
 
 	/// Get the parent of this node on the DOM.
@@ -1386,7 +1390,7 @@ public:
 	}
 
 	/** Get the first child element, or optionally the first child
-	element with the specified name.
+	element with the specified attr_name.
 	*/
 	const XMLElement* FirstChildElement(const char* name = 0) const
 	{
@@ -1413,7 +1417,7 @@ public:
 	}
 
 	/** Get the last child element or optionally the last child
-	element with the specified name.
+	element with the specified attr_name.
 	*/
 	const XMLElement* LastChildElement(const char* name = 0) const
 	{
@@ -1439,7 +1443,7 @@ public:
 		return _prev;
 	}
 
-	/// Get the previous (left) sibling element of this node, with an optionally supplied name.
+	/// Get the previous (left) sibling element of this node, with an optionally supplied attr_name.
 	const XMLElement*	PreviousSiblingElement(const char* name = 0) const
 	{
 		for (const XMLNode* node = _prev; node; node = node->_prev) {
@@ -1464,7 +1468,7 @@ public:
 		return _next;
 	}
 
-	/// Get the next (right) sibling element of this node, with an optionally supplied name.
+	/// Get the next (right) sibling element of this node, with an optionally supplied attr_name.
 	const XMLElement*	NextSiblingElement(const char* name = 0) const
 	{
 		for (const XMLNode* node = _next; node; node = node->_next) {
@@ -1785,7 +1789,7 @@ Note that a text node can have child element nodes, for example:
 @endverbatim
 
 A text node can have 2 ways to output the next. "normal" output
-and CDATA. It will default to the mode it was parsed from the XML file and
+and CDATA. It will default to the mode it was parsed from the XML xml_file and
 you generally want to leave it alone, but you can change the output mode with
 SetCData() and query it with CData().
 */
@@ -1876,9 +1880,9 @@ protected:
 	char* ParseDeep(char* p, StrPair* parentEndTag, int* curLineNumPtr);
 };
 
-/** In correct XML the declaration is the first entry in the file.
+/** In correct XML the declaration is the first entry in the xml_file.
 @verbatim
-<?xml version="1.0" standalone="yes"?>
+<?xml_text version="1.0" standalone="yes"?>
 @endverbatim
 
 TinyXML-2 will happily read or write files without a declaration,
@@ -1926,7 +1930,7 @@ protected:
 
 /** Any tag that TinyXML-2 doesn't recognize is saved as an
 unknown. It is a tag of text, but should not be modified.
-It will be written back to the XML, unchanged, when the file
+It will be written back to the XML, unchanged, when the xml_file
 is saved.
 
 DTD tags get thrown into XMLUnknowns.
@@ -1967,8 +1971,8 @@ protected:
 	char* ParseDeep(char* p, StrPair* parentEndTag, int* curLineNumPtr);
 };
 
-/** An attribute is a name-value pair. Elements have an arbitrary
-number of attributes, each with a unique name.
+/** An attribute is a attr_name-value pair. Elements have an arbitrary
+number of attributes, each with a unique attr_name.
 
 @note The attributes are not XMLNodes. You may only query the
 Next() attribute in a list.
@@ -1980,7 +1984,7 @@ public:
 	XMLAttribute(const XMLAttribute&) = delete;				// not supported
 	XMLAttribute& operator=(const XMLAttribute&) = delete;	// not supported
 
-															/// The name of the attribute.
+															/// The attr_name of the attribute.
 	const char* Name() const
 	{
 		return _name.GetStr();
@@ -1992,7 +1996,7 @@ public:
 		return _value.GetStr();
 	}
 
-	/// Gets the line number the attribute is in, if the document was parsed from a file.
+	/// Gets the line number the attribute is in, if the document was parsed from a xml_file.
 	int GetLineNum() const { return _parseLineNum; }
 
 	/// The next attribute in the list.
@@ -2188,7 +2192,7 @@ private:
 
 	char* ParseDeep(char* p, bool processEntities, int* curLineNumPtr)
 	{
-		// Parse using the name rules: bug fix, was using ParseText before
+		// Parse using the attr_name rules: bug fix, was using ParseText before
 		p = _name.ParseName(p);
 		if (!p || !*p) {
 			return 0;
@@ -2220,7 +2224,7 @@ private:
 	MemPool*        _memPool;
 };
 
-/** The element is a container class. It has a value, the element name,
+/** The element is a container class. It has a value, the element attr_name,
 and can contain other elements, text, comments, and unknowns.
 Elements also contain an arbitrary number of attributes.
 */
@@ -2231,11 +2235,11 @@ public:
 	XMLElement(const XMLElement&) = delete;				// not supported
 	XMLElement& operator=(const XMLElement&) = delete;	// not supported
 
-														/// Get the name of an element (which is the Value() of the node.)
+														/// Get the attr_name of an element (which is the Value() of the node.)
 	const char* Name() const {
 		return Value();
 	}
-	/// Set the name of the element.
+	/// Set the attr_name of the element.
 	void SetName(const char* str, bool staticMem = false) {
 		SetValue(str, staticMem);
 	}
@@ -2259,8 +2263,8 @@ public:
 		return visitor->VisitExit(*this);
 	}
 
-	/** Given an attribute name, Attribute() returns the value
-	for the attribute of that name, or null if none
+	/** Given an attribute attr_name, Attribute() returns the value
+	for the attribute of that attr_name, or null if none
 	exists. For example:
 
 	@verbatim
@@ -2268,7 +2272,7 @@ public:
 	@endverbatim
 
 	The 'value' parameter is normally null. However, if specified,
-	the attribute will only be returned if the 'name' and 'value'
+	the attribute will only be returned if the 'attr_name' and 'value'
 	match. This allow you to write code:
 
 	@verbatim
@@ -2294,7 +2298,7 @@ public:
 		return 0;
 	}
 
-	/** Given an attribute name, IntAttribute() returns the value
+	/** Given an attribute attr_name, IntAttribute() returns the value
 	of the attribute interpreted as an integer. The default
 	value will be returned if the attribute isn't present,
 	or if there is an error. (For a method with error
@@ -2355,7 +2359,7 @@ public:
 		return f;
 	}
 
-	/** Given an attribute name, QueryIntAttribute() returns
+	/** Given an attribute attr_name, QueryIntAttribute() returns
 	XML_SUCCESS, XML_WRONG_ATTRIBUTE_TYPE if the conversion
 	can't be performed, or XML_NO_ATTRIBUTE if the attribute
 	doesn't exist. If successful, the result of the conversion
@@ -2438,7 +2442,7 @@ public:
 		return XML_SUCCESS;
 	}
 
-	/** Given an attribute name, QueryAttribute() returns
+	/** Given an attribute attr_name, QueryAttribute() returns
 	XML_SUCCESS, XML_WRONG_ATTRIBUTE_TYPE if the conversion
 	can't be performed, or XML_NO_ATTRIBUTE if the attribute
 	doesn't exist. It is overloaded for the primitive types,
@@ -2711,7 +2715,7 @@ public:
 	@endverbatim
 
 	@returns XML_SUCCESS (0) on success, XML_CAN_NOT_CONVERT_TEXT if the text cannot be converted
-	to the requested type, and XML_NO_TEXT_NODE if there is no child text to query.
+	to the requested Type, and XML_NO_TEXT_NODE if there is no child text to query.
 
 	*/
 	XMLError QueryIntText(int* ival) const
@@ -2890,7 +2894,7 @@ protected:
 	//	<ele>foo<b>bar</b></ele>
 	char* ParseDeep(char* p, StrPair* parentEndTag, int* curLineNumPtr)
 	{
-		// Read the element name.
+		// Read the element attr_name.
 		p = SkipWhiteSpace(p, curLineNumPtr);
 
 		// The closing element is the </element> form. It is
@@ -3038,13 +3042,13 @@ public:
 	}
 
 	/**
-	Parse an XML file from a character string.
+	Parse an XML xml_file from a character string.
 	Returns XML_SUCCESS (0) on success, or
 	an errorID.
 
 	You may optionally pass in the 'nBytes', which is
 	the number of bytes which will be parsed. If not
-	specified, TinyXML-2 will assume 'xml' points to a
+	specified, TinyXML-2 will assume 'xml_text' points to a
 	null terminated string.
 	*/
 	XMLError Parse(const char* p, size_t len = static_cast<size_t>(-1))
@@ -3078,7 +3082,7 @@ public:
 	}
 
 	/**
-	Load an XML file from disk.
+	Load an XML xml_file from disk.
 	Returns XML_SUCCESS (0) on success, or
 	an errorID.
 	*/
@@ -3102,10 +3106,10 @@ public:
 	}
 
 	/**
-	Load an XML file from disk. You are responsible
+	Load an XML xml_file from disk. You are responsible
 	for providing and closing the FILE*.
 
-	NOTE: The file should be opened as binary ("rb")
+	NOTE: The xml_file should be opened as binary ("rb")
 	not text in order for TinyXML-2 to correctly
 	do newline normalization.
 
@@ -3159,7 +3163,7 @@ public:
 
 
 	/**
-	Save the XML file to disk. You are responsible
+	Save the XML xml_file to disk. You are responsible
 	for providing and closing the FILE*.
 
 	Returns XML_SUCCESS (0) on success, or
@@ -3167,7 +3171,7 @@ public:
 	*/
 	XMLError SaveFile(FILE* fp, bool compact = false);
 	/**
-	Save the XML file to disk.
+	Save the XML xml_file to disk.
 	Returns XML_SUCCESS (0) on success, or
 	an errorID.
 	*/
@@ -3186,7 +3190,7 @@ public:
 	bool HasBOM() const {
 		return _writeBOM;
 	}
-	/** Sets whether to write the BOM when writing the file.
+	/** Sets whether to write the BOM when writing the xml_file.
 	*/
 	void SetBOM(bool useBOM) {
 		_writeBOM = useBOM;
@@ -3203,7 +3207,7 @@ public:
 	}
 
 	/** Print the Document. If the Printer is not provided, it will
-	print to stdout. If you provide Printer, this can print to a file:
+	print to stdout. If you provide Printer, this can print to a xml_file:
 	@verbatim
 	XMLPrinter printer( fp );
 	doc.Print( &printer );
@@ -3274,7 +3278,7 @@ public:
 	If the 'text' param is null, the standard
 	declaration is used.:
 	@verbatim
-	<?xml version="1.0" encoding="UTF-8"?>
+	<?xml_text version="1.0" encoding="UTF-8"?>
 	@endverbatim
 	*/
 	XMLDeclaration* NewDeclaration(const char* str = 0)
@@ -3824,7 +3828,7 @@ options than the XMLDocument::Print() method.
 
 It can:
 -# Print to memory.
--# Print to a file you provide.
+-# Print to a xml_file you provide.
 -# Print XML without a XMLDocument.
 
 Print to Memory
@@ -3837,7 +3841,7 @@ SomeFunction( printer.CStr() );
 
 Print to a File
 
-You provide the file pointer.
+You provide the xml_file pointer.
 @verbatim
 XMLPrinter printer( fp );
 doc.Print( &printer );
@@ -3850,7 +3854,7 @@ when saving, it just gets in the way. The code is often set up
 for streaming, and constructing the DOM is just overhead.
 
 The Printer supports the streaming case. The following code
-prints out a trivially simple XML file without ever creating
+prints out a trivially simple XML xml_file without ever creating
 an XML document.
 
 @verbatim
@@ -4192,14 +4196,14 @@ public:
 
 	/**
 	If in print to memory mode, return a pointer to
-	the XML file in memory.
+	the XML xml_file in memory.
 	*/
 	const char* CStr() const {
 		return _buffer.Mem();
 	}
 	/**
 	If in print to memory mode, return the size
-	of the XML file in memory. (Note the size returned
+	of the XML xml_file in memory. (Note the size returned
 	includes the terminating null.)
 	*/
 	int CStrSize() const {
@@ -4644,7 +4648,7 @@ inline char * XMLElement::ParseAttributes(char * p, int * curLineNumPtr)
 				_document->SetError(XML_ERROR_PARSING_ATTRIBUTE, attrLineNum, "XMLElement name=%s", Name());
 				return 0;
 			}
-			// There is a minor bug here: if the attribute in the source xml
+			// There is a minor bug here: if the attribute in the source xml_text
 			// document is duplicated, it will not be detected and the
 			// attribute will be doubly added. However, tracking the 'prevAttribute'
 			// avoids re-scanning the attribute list. Preferring performance for
@@ -4749,5 +4753,163 @@ _HULU_END
 #endif
 
 #pragma pop_macro("new")
+
+_HULU_BEGIN
+
+/**
+* @brief a Xml_parser<> implementer base on tinyxml2
+*/
+class Tinyxml2_ : public Xml_parser<XMLElement*>
+{
+public:
+	using Element_type = typename Xml_parser<XMLElement*>::Element_type;
+
+	Tinyxml2_() noexcept {}
+
+	Tinyxml2_(char const* xml_file) 
+	{
+		ready_ = (XML_SUCCESS == doc_.LoadFile(xml_file));
+	}
+
+public:	
+	bool parse_text(char const* xml_text) override
+	{
+		ready_ = (XML_SUCCESS == doc_.Parse(xml_text));
+		return ready_;
+	}
+
+	Element_type root() override
+	{
+		assert(ready_);
+		return doc_.RootElement();
+	}
+
+public:
+	std::vector<Element_type> all(const char* ele_name) override
+	{
+		assert(ready_);
+		vec_.clear();
+		all_(ele_name, root());
+		return vec_;
+	}
+
+	std::vector<Element_type> all(const char* ele_name, const char* parent) override
+	{
+		assert(ready_);
+		vec_.clear();
+		all_(ele_name, root(), parent);
+		return vec_;
+	}
+
+	std::vector<Element_type> all(const char* ele_name, const char* parent, const char* pparent) override
+	{
+		assert(ready_);
+		vec_.clear();
+		all_(ele_name, root(), parent, pparent);
+		return vec_;
+	}
+
+	std::vector<Element_type> childs(Element_type ele, char const* child_name = nullptr) override
+	{
+		std::vector<Element_type> v;
+		if (ele->NoChildren())
+			return v;
+
+		Element_type n = ele->FirstChildElement(child_name);
+		while (n)
+		{
+			v.push_back(n);
+			n = n->NextSiblingElement(child_name);
+		}
+		return v;
+	}
+
+public:
+	char const* text(Element_type ele) override
+	{
+		return ele->GetText();
+	}
+
+	std::pair<bool, int32_t> int32_attribute(Element_type ele, char const* attr_name) override
+	{
+		int32_t value;
+		auto result = ele->QueryIntAttribute(attr_name, &value);
+		return std::make_pair(result == XML_SUCCESS, value);
+	}
+
+	std::pair<bool, std::string> string_attribute(Element_type ele, char const* attr_name) override
+	{
+		auto v = ele->Attribute(attr_name);
+		return std::make_pair(v != NULL, v == NULL ? "" : v);
+	}
+
+	std::pair<bool, bool> bool_attribute(Element_type ele, char const* attr_name) override
+	{
+		bool value;
+		auto result = ele->QueryBoolAttribute(attr_name, &value);
+		return std::make_pair(result == XML_SUCCESS, value);
+	}
+
+	std::pair<bool, double> double_attribute(Element_type ele, char const* attr_name) override
+	{
+		double value;
+		auto result = ele->QueryDoubleAttribute(attr_name, &value);
+		return std::make_pair(result == XML_SUCCESS, value);
+	}
+
+private:
+	void all_(const char* name, Element_type ele) 
+	{
+		if (::strcmp(name, ele->Name()) == 0) {
+			vec_.push_back(ele);
+		}
+		if (ele->FirstChildElement()) {
+			all_(name, ele->FirstChildElement());
+		}
+		if (ele->NextSiblingElement()) {
+			all_(name, ele->NextSiblingElement());
+		}
+	}
+
+	void all_(const char* name, Element_type ele, const char* parent) 
+	{
+		if (::strcmp(name, ele->Name()) == 0) {
+			if (ele->Parent() &&
+				(::strcmp(parent, ele->Parent()->ToElement()->Name()) == 0))
+				vec_.push_back(ele);
+		}
+		if (ele->FirstChildElement()) {
+			all_(name, ele->FirstChildElement(), parent);
+		}
+		if (ele->NextSiblingElement()) {
+			all_(name, ele->NextSiblingElement(), parent);
+		}
+	}
+
+	void all_(const char* name, Element_type ele, const char* parent, const char* pparent) 
+	{
+		if (::strcmp(name, ele->Name()) == 0) {
+			if (ele->Parent() &&
+				(::strcmp(parent, ele->Parent()->ToElement()->Name()) == 0))
+				if (ele->Parent()->Parent() &&
+					(::strcmp(pparent, ele->Parent()->Parent()->ToElement()->Name()) == 0))
+					vec_.push_back(ele);
+		}
+		if (ele->FirstChildElement()) {
+			all_(name, ele->FirstChildElement(), parent, pparent);
+		}
+		if (ele->NextSiblingElement()) {
+			all_(name, ele->NextSiblingElement(), parent, pparent);
+		}
+	}
+
+private:
+	XMLDocument doc_;
+	std::vector<Element_type> vec_;
+};
+
+using Tinyxml2 = Non_copyable<Tinyxml2_>;
+
+_HULU_END
 
 #endif // _HULU_PARSE_TINYXML2_EX_H_

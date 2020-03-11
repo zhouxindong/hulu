@@ -7,7 +7,7 @@
 _HULU_BEGIN
 
 /**
- * @brief provide the type can count it's objects
+ * @brief provide the Type can count it's objects
  */
 template <typename _Counted_type>
 class Object_countable : public _Counted_type
