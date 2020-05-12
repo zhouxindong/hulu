@@ -34,6 +34,26 @@
 #define _STD_END   }
 #define _STD ::std::
 
+/**
+* _MSC_VER == 1600 VS2010
+* _MSC_VER == 1800 VS2013
+* _MSC_VER == 1900 VS2015
+* _MSC_VER == 1910 VS2017
+*/
+
+#if _MSC_VER > 1800
+#define _NOEXCEPT_LEGO noexcept
+#else
+#define _NOEXCEPT_LEGO
+#endif
+
+#if _MSC_VER > 1900
+#define _CONSTEXPR_LEGO constexpr
+#else
+#define _CONSTEXPR_LEGO
+#endif
+
+
 /*
 ** defined class data member
 ** generated data set|get function automatic

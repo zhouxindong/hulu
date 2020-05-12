@@ -23,32 +23,32 @@
     <ProjectGuid>{69B34FBB-077A-4B1C-87EE-33B1095A7407}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>hulu</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -101,6 +101,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,8 +144,11 @@
     <ClInclude Include="base\object_tracer.h" />
     <ClInclude Include="base\noncopyable.h" />
     <ClInclude Include="base\noninstantable.h" />
+    <ClInclude Include="base\pipe_range.h" />
     <ClInclude Include="base\presuffixable.h" />
+    <ClInclude Include="base\range.h" />
     <ClInclude Include="base\singlable.h" />
+    <ClInclude Include="base\variant_case.h" />
     <ClInclude Include="chrono\chrono_algori.h" />
     <ClInclude Include="chrono\chrono_ex.h" />
     <ClInclude Include="dump\assert_any.h" />
@@ -157,7 +161,10 @@
     <ClInclude Include="parse\tinyxml2_ex.h" />
     <ClInclude Include="parse\xml_parser.h" />
     <ClInclude Include="stlx\case_insensive_char_traits.h" />
+    <ClInclude Include="thread\peer_thread.h" />
     <ClInclude Include="thread\spin_lock.h" />
+    <ClInclude Include="thread\thread_guard.h" />
+    <ClInclude Include="utility\reflect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

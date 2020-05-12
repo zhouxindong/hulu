@@ -879,7 +879,7 @@ A dynamic array of Plain Old Data. Doesn't support constructors, etc.
 Has a small initial memory pool, so that low or no usage will not
 cause a call to new/delete
 */
-template <class T, int INITIAL_SIZE>
+template <class Sink, int INITIAL_SIZE>
 class DynArray
 {
 public:
@@ -903,23 +903,23 @@ public:
 		_size = 0;
 	}
 
-	void Push(T t) {
+	void Push(Sink t) {
 		TIXMLASSERT(_size < INT_MAX);
 		EnsureCapacity(_size + 1);
 		_mem[_size] = t;
 		++_size;
 	}
 
-	T* PushArr(int count) {
+	Sink* PushArr(int count) {
 		TIXMLASSERT(count >= 0);
 		TIXMLASSERT(_size <= INT_MAX - count);
 		EnsureCapacity(_size + count);
-		T* ret = &_mem[_size];
+		Sink* ret = &_mem[_size];
 		_size += count;
 		return ret;
 	}
 
-	T Pop() {
+	Sink Pop() {
 		TIXMLASSERT(_size > 0);
 		--_size;
 		return _mem[_size];
@@ -934,17 +934,17 @@ public:
 		return _size == 0;
 	}
 
-	T& operator[](int i) {
+	Sink& operator[](int i) {
 		TIXMLASSERT(i >= 0 && i < _size);
 		return _mem[i];
 	}
 
-	const T& operator[](int i) const {
+	const Sink& operator[](int i) const {
 		TIXMLASSERT(i >= 0 && i < _size);
 		return _mem[i];
 	}
 
-	const T& PeekTop() const {
+	const Sink& PeekTop() const {
 		TIXMLASSERT(_size > 0);
 		return _mem[_size - 1];
 	}
@@ -966,12 +966,12 @@ public:
 		--_size;
 	}
 
-	const T* Mem() const {
+	const Sink* Mem() const {
 		TIXMLASSERT(_mem);
 		return _mem;
 	}
 
-	T* Mem() {
+	Sink* Mem() {
 		TIXMLASSERT(_mem);
 		return _mem;
 	}
@@ -982,9 +982,9 @@ private:
 		if (cap > _allocated) {
 			TIXMLASSERT(cap <= INT_MAX / 2);
 			const int newAllocated = cap * 2;
-			T* newMem = new T[newAllocated];
+			Sink* newMem = new Sink[newAllocated];
 			TIXMLASSERT(newAllocated >= _size);
-			memcpy(newMem, _mem, sizeof(T)*_size);	// warning: not using constructors, only works for PODs
+			memcpy(newMem, _mem, sizeof(Sink)*_size);	// warning: not using constructors, only works for PODs
 			if (_mem != _pool) {
 				delete[] _mem;
 			}
@@ -993,8 +993,8 @@ private:
 		}
 	}
 
-	T*  _mem;
-	T   _pool[INITIAL_SIZE];
+	Sink*  _mem;
+	Sink   _pool[INITIAL_SIZE];
 	int _allocated;		// objects allocated
 	int _size;			// number objects in use
 };

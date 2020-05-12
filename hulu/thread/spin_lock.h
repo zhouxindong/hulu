@@ -22,48 +22,38 @@ public:
 	Spin_lock_(bool setable = true) noexcept
 	{
 		if (setable)
-			flag_lock_.test_and_set(std::memory_order_acquire);
+			flag_lock_.test_and_set(std::memory_order_relaxed);
 	}
 
 	template <typename _Func, typename... Args>
-	void spin(_Func f, Args&&... args) noexcept
+	void spin(_Func&& f, Args&&... args) noexcept
 	{
-		++spin_count_;
 		lock_();
-		while (lock_())
+		while (lock_() && !released_)
 		{
-			f(std::forward<Args>(args)...);
+			std::forward<_Func>(f)(std::forward<Args>(args)...);
 		}
 	}
 
 	void spin() noexcept
 	{
-		++spin_count_;
 		lock_();
-		while (lock_()) {}
+		while (lock_() && !released_) {}
 	}
 
 	void release() noexcept
 	{
 		flag_lock_.clear();
-	}
-
-	void release_all() noexcept
-	{
-		while (spin_count_ > 0)
-		{
-			release();
-			--spin_count_;
-		}
+		released_ = true;
 	}
 
 private:
 	std::atomic_flag flag_lock_{ ATOMIC_FLAG_INIT };
-	size_t spin_count_{ 0 };
+	bool released_{ false };
 
 	bool lock_() noexcept
 	{
-		return flag_lock_.test_and_set(std::memory_order_acquire);
+		return flag_lock_.test_and_set(std::memory_order_relaxed);
 	}
 };
 

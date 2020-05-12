@@ -19,7 +19,11 @@ _HULU_BEGIN
  * @brief for arry, ::operator new[] return the address is 
 	differenct to new[] expression returned, add 8 bytes
  */
-constexpr int64_t kArrayPointOffset = 8;
+#ifdef _WIN64
+	constexpr int64_t kArrayPointOffset = 8;
+#else
+	constexpr int64_t kArrayPointOffset = 4;
+#endif
 
 /**
  * @brief new operator allocate recorder

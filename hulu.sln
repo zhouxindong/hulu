@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hulu", "hulu\hulu.vcxproj", "{69B34FBB-077A-4B1C-87EE-33B1095A7407}"
 EndProject
@@ -20,6 +20,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parse", "unit_test\parse\parse.vcxproj", "{17FDE31A-6E0A-48EF-B248-0944BCAA4434}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thread", "test\thread\thread.vcxproj", "{6966E3F3-AFA7-4843-89D3-ABF74D8A435B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility", "unit_test\utility\utility.vcxproj", "{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility", "test\utility\utility.vcxproj", "{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base", "unit_test\base\base.vcxproj", "{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +91,30 @@ Global
 		{6966E3F3-AFA7-4843-89D3-ABF74D8A435B}.Release|x64.Build.0 = Release|x64
 		{6966E3F3-AFA7-4843-89D3-ABF74D8A435B}.Release|x86.ActiveCfg = Release|Win32
 		{6966E3F3-AFA7-4843-89D3-ABF74D8A435B}.Release|x86.Build.0 = Release|Win32
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Debug|x64.ActiveCfg = Debug|x64
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Debug|x64.Build.0 = Debug|x64
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Debug|x86.ActiveCfg = Debug|Win32
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Debug|x86.Build.0 = Debug|Win32
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Release|x64.ActiveCfg = Release|x64
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Release|x64.Build.0 = Release|x64
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Release|x86.ActiveCfg = Release|Win32
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24}.Release|x86.Build.0 = Release|Win32
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Debug|x64.ActiveCfg = Debug|x64
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Debug|x64.Build.0 = Debug|x64
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Debug|x86.ActiveCfg = Debug|Win32
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Debug|x86.Build.0 = Debug|Win32
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Release|x64.ActiveCfg = Release|x64
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Release|x64.Build.0 = Release|x64
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Release|x86.ActiveCfg = Release|Win32
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0}.Release|x86.Build.0 = Release|Win32
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Debug|x64.ActiveCfg = Debug|x64
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Debug|x64.Build.0 = Debug|x64
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Debug|x86.ActiveCfg = Debug|Win32
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Debug|x86.Build.0 = Debug|Win32
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Release|x64.ActiveCfg = Release|x64
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Release|x64.Build.0 = Release|x64
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Release|x86.ActiveCfg = Release|Win32
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,5 +126,11 @@ Global
 		{A38BBFBF-53D6-4BD0-81F7-09A5C74A202F} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
 		{17FDE31A-6E0A-48EF-B248-0944BCAA4434} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
 		{6966E3F3-AFA7-4843-89D3-ABF74D8A435B} = {3FA4AC2A-A263-494E-8A48-6C6B9FABB3B9}
+		{6340CCA6-7AC6-4D37-B5F8-B832311B1C24} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
+		{E5CFCF9D-1BAD-490D-84D7-8BBC9B0A14C0} = {3FA4AC2A-A263-494E-8A48-6C6B9FABB3B9}
+		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF4D3501-2A89-403E-B765-DB792148F92D}
 	EndGlobalSection
 EndGlobal

@@ -11,10 +11,18 @@ using namespace hulu;
 using namespace std;
 
 Spin_lock spin;
+Spin_lock spin2;
+Spin_lock spin3;
+
+void f1_cb()
+{
+	cout << "f1_cb()\n";
+	Sleep(1000);
+}
 
 void f(int n)
 {
-	spin.spin();
+	spin.spin(f1_cb);
 	cout << "after spin() in f(int n)\n";
 }
 
@@ -31,28 +39,26 @@ void f2()
 	cout << "after spin() in f2()\n";
 }
 
-void g(int n)
+void f3()
 {
-	cout << "g(int n) is going to start.\n";
-	spin.release();
-	cout << "after release() in g(int n)\n";
+	spin.spin();
+	cout << "after spin() in f3\n";
 }
 
 int main()
 {
 	thread t1(f, 1); // a thread to spin
+	thread t2(f2);   // another thread to spin
+	thread t3(f3);
+
 	system("pause");
-	thread t3(f2);   // another thread to spin
-	system("pause");
-	//thread t2(g, 2); // a thread to release spin
-	//system("pause");
-	spin.release_all();
+	spin.release();
 
 	t1.join();
-	//t2.join();
+	t2.join();
 	t3.join();
-	system("pause");
 
+	system("pause");
     return 0;
 }
 

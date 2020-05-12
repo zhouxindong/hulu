@@ -32,6 +32,7 @@ private:
 	char ch_;
 };
 
+/*
 int main()
 {
 	Y* p = new Y(33.9);
@@ -56,3 +57,4 @@ int main()
 	system("pause");
 	return 0;
 }
+//*/

@@ -31,6 +31,9 @@
     <Filter Include="Header Files\thread">
       <UniqueIdentifier>{3e4d9e0f-e85c-4cda-a656-d0784cce0a3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utility">
+      <UniqueIdentifier>{131403f8-934d-43a6-a67d-f96ad12e2120}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gvals.h">
@@ -89,6 +92,24 @@
     </ClInclude>
     <ClInclude Include="dump\struct_exception.h">
       <Filter>Header Files\dump</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\reflect.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\peer_thread.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\thread_guard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\pipe_range.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\range.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\variant_case.h">
+      <Filter>Header Files\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -28,14 +28,14 @@ public:
 		--s_count;
 	}
 
-	static std::size_t live() noexcept
+	static size_t live() noexcept
 	{
 		return s_count;
 	}
 };
 
 template <typename _Counted_type>
-std::size_t Object_countable<_Counted_type>::s_count = 0;
+size_t Object_countable<_Counted_type>::s_count = 0;
 
 _HULU_END
 
