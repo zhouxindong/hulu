@@ -34,6 +34,12 @@
     <Filter Include="Header Files\utility">
       <UniqueIdentifier>{131403f8-934d-43a6-a67d-f96ad12e2120}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\meta_test">
+      <UniqueIdentifier>{5357ecc5-a5d4-46cf-8af7-4f58347054a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\loki">
+      <UniqueIdentifier>{db8b3727-3e12-4b3b-91e7-c5ddb5990b22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gvals.h">
@@ -99,9 +105,6 @@
     <ClInclude Include="thread\peer_thread.h">
       <Filter>Header Files\thread</Filter>
     </ClInclude>
-    <ClInclude Include="thread\thread_guard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="base\pipe_range.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
@@ -110,6 +113,42 @@
     </ClInclude>
     <ClInclude Include="base\variant_case.h">
       <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\thread_guard.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="meta_test\algo.h">
+      <Filter>Header Files\meta_test</Filter>
+    </ClInclude>
+    <ClInclude Include="meta_test\base.h">
+      <Filter>Header Files\meta_test</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\compile_time_check.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\Int2Type.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\Type2Type.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\Conversion.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\TypeInfo.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\NullType.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\EmptyType.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\TypeTraits.h">
+      <Filter>Header Files\loki</Filter>
+    </ClInclude>
+    <ClInclude Include="loki\Typelist.h">
+      <Filter>Header Files\loki</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
