@@ -150,5 +150,11 @@
     <ClInclude Include="loki\Typelist.h">
       <Filter>Header Files\loki</Filter>
     </ClInclude>
+    <ClInclude Include="base\lsignal.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\easy_signal.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

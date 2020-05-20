@@ -50,5 +50,8 @@
     <ClCompile Include="pipe_range.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="easy_signal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

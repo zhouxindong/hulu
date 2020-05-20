@@ -148,6 +148,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="easy_signal.cpp" />
     <ClCompile Include="noncopyable.cpp" />
     <ClCompile Include="noninstantable.cpp" />
     <ClCompile Include="object_countable.cpp" />

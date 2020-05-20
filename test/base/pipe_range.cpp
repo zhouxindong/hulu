@@ -18,7 +18,7 @@ double sum(double x, double y)
 	return (x + y);
 }
 
-///*
+/*
 int main()
 {
 	std::vector<int> v{ 1,2,3,4,5,6 };

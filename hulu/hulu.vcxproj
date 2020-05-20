@@ -140,6 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="base\easy_signal.h" />
+    <ClInclude Include="base\lsignal.h" />
     <ClInclude Include="base\object_countable.h" />
     <ClInclude Include="base\object_tracer.h" />
     <ClInclude Include="base\noncopyable.h" />
