@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "meta_test", "unit_test\meta
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "loki", "unit_test\loki\loki.vcxproj", "{0506BA67-A307-4603-866D-2A7C716F0620}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "loki", "test\loki\loki.vcxproj", "{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -135,6 +137,14 @@ Global
 		{0506BA67-A307-4603-866D-2A7C716F0620}.Release|x64.Build.0 = Release|x64
 		{0506BA67-A307-4603-866D-2A7C716F0620}.Release|x86.ActiveCfg = Release|Win32
 		{0506BA67-A307-4603-866D-2A7C716F0620}.Release|x86.Build.0 = Release|Win32
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Debug|x64.ActiveCfg = Debug|x64
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Debug|x64.Build.0 = Debug|x64
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Debug|x86.ActiveCfg = Debug|Win32
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Debug|x86.Build.0 = Debug|Win32
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Release|x64.ActiveCfg = Release|x64
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Release|x64.Build.0 = Release|x64
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Release|x86.ActiveCfg = Release|Win32
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,6 +161,7 @@ Global
 		{7DD9C04A-147C-43B7-9581-EF875F8E1BA0} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
 		{75354185-C610-444F-AF6E-0F0CBF37595C} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
 		{0506BA67-A307-4603-866D-2A7C716F0620} = {FD487EE2-88CD-4A90-8475-19983B077F9F}
+		{65BD9748-A5BD-4363-B1AE-BCB179FCD0E2} = {3FA4AC2A-A263-494E-8A48-6C6B9FABB3B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF4D3501-2A89-403E-B765-DB792148F92D}

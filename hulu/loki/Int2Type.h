@@ -9,7 +9,7 @@ _HULU_BEGIN
 template <int V>
 struct Int2Type
 {
-	enum { value = v };
+	enum { value = V };
 };
 
 _HULU_END
