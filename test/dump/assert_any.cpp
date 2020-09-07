@@ -5,15 +5,15 @@
 
 #include "dump/assert_any.h"
 
-//int main()
-//{
-//	OutputDebugStringA("sofsidfas");
-//	ASSERT_ANY(true);
-//
-//	system("pause");
-//	ASSERT_ANY(false);
-//	OutputDebugStringA("sofsidfas3234234");
-//	system("pause");
-//	return 0;
-//}
+int main()
+{
+	OutputDebugStringA("sofsidfas");
+	ASSERT_ANY(true);
+
+	system("pause");
+	ASSERT_ANY(false);
+	OutputDebugStringA("sofsidfas3234234");
+	system("pause");
+	return 0;
+}
 

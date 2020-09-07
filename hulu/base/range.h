@@ -865,7 +865,7 @@ namespace RX_NAMESPACE {
             }
             constexpr output_type get() const {
                 RX_ASSERT(!at_end());
-                return transform_.func(input_.get());
+                return ].func(input_.get());
             }
             constexpr bool at_end() const {
                 return input_.at_end();
